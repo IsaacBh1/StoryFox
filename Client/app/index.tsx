@@ -1,4 +1,7 @@
+import { Link, router } from "expo-router";
+import { useEffect } from "react";
 import { Text, View } from "react-native";
+import { Button } from "tamagui";
 
 export default function Index() {
   return (
@@ -9,7 +12,9 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <Button theme={"light_green"}>
+        <Link href={"/story/summary"}>Hello World</Link>
+      </Button>
     </View>
   );
 }
