@@ -1,20 +1,14 @@
-import { Link, router } from "expo-router";
-import { useEffect } from "react";
-import { Text, View } from "react-native";
+// app/index.tsx
+import { Link } from "expo-router";
+import { View } from "react-native";
 import { Button } from "tamagui";
 
 export default function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Button theme={"light_green"}>
-        <Link href={"/story/summary"}>Hello World</Link>
-      </Button>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Link href="/story/options" asChild>
+        <Button theme="light_green">Start Story Creation</Button>
+      </Link>
     </View>
   );
 }

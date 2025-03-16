@@ -1,22 +1,19 @@
-import { createTamagui, TamaguiProvider, View } from "tamagui";
-import { defaultConfig } from "@tamagui/config/v4"; // for quick config install this
-import { router, Stack } from "expo-router";
-import { useEffect } from "react";
-import "../global.css";
+// app/_layout.tsx
+import { createTamagui, TamaguiProvider } from "tamagui";
+import { defaultConfig } from "@tamagui/config/v4";
+import { Stack } from "expo-router";
+
 const config = createTamagui(defaultConfig);
 
-const RootLayout = () => {
-  // useEffect(() => {
-  //   router.push("/story/summary");
-  // });
+export default function RootLayout() {
   return (
     <TamaguiProvider config={config}>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
+        <Stack.Screen name="story/options" />
         <Stack.Screen name="story/summary" />
+        <Stack.Screen name="story/chapters/[id]" />
       </Stack>
     </TamaguiProvider>
   );
-};
-
-export default RootLayout;
+}

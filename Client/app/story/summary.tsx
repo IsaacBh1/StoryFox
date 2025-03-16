@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Istory } from "@/types/story";
 import { story as MockStory } from "@/constants/test/mockStory";
 import StorySummary from "@/components/StorySummmary";
 
