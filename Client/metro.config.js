@@ -6,9 +6,9 @@ const { withNativeWind } = require("nativewind/metro");
 const { withTamagui } = require("@tamagui/metro-plugin");
 
 // Apply NativeWind
-const nativeWindConfig = withNativeWind(config, { input: "./global.css" });
 
 // Apply Tamagui
+const nativeWindConfig = withNativeWind(config, { input: "./global.css" });
 const tamaguiConfig = withTamagui(nativeWindConfig, {
   components: ["tamagui"],
   config: "./tamagui.config.ts",

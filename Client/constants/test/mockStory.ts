@@ -8,10 +8,9 @@ const ch4 = require("../../assets/images/test/ch4.png");
 const chapters: chapter[] = [
   {
     image: ch1,
-    text: `Emma loved playing in the forest near her house. One day, while exploring, she heard a soft whisper coming from a tall oak tree.
+    text: `Emma loved playing in the forest near her  loved playing in the forest near her  loved playing in the forest near her  loved playing in the forest near her  loved playing in the forest near her house. One day, while exploring, she heard a soft whisper coming from a tall oak tree.
   “Help me, Emma,” the tree whispered.
-  Emma's eyes widened. “Who''s there?” she asked, stepping closer.
-  A small squirrel popped out from behind the tree. “It''s the tree! It''s very old and needs help. Some of its roots are trapped under heavy stones.”`,
+  Emma's ee! It''s very old and needs help. Some of its roots are trapped under heavy stones.”`,
   },
   {
     image: ch2,
@@ -40,6 +39,7 @@ const story: Istory = {
   teaserImage: summary,
   readingTime: "5 ~ 7 min",
   chapters: chapters,
+  storyValue: "Helping the environment makes the world stronger.",
 };
 
 export { story, chapters };
