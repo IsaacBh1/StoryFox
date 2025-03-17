@@ -4,6 +4,8 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 import os
 import json
+from langchain_google_vertexai.vision_models import VertexAIImageGeneratorChat
+
 
 
 main = Blueprint('main', __name__)
