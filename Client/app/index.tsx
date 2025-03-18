@@ -1,6 +1,6 @@
-import { Link, router } from "expo-router";
-import { useEffect } from "react";
-import { Text, View } from "react-native";
+// app/index.tsx
+import { Link } from "expo-router";
+import { View } from "react-native";
 import { Button } from "tamagui";
 import * as NavigationBar from "expo-navigation-bar";
 
@@ -23,6 +23,10 @@ export default function Index() {
           Hello World
         </Link>
       </Button>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Link href="./story_parameters/options" asChild>
+        <Button theme="light_green">select gender</Button>
+      </Link>
     </View>
   );
 }

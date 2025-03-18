@@ -1,31 +1,44 @@
-import { createTamagui, TamaguiProvider, View } from "tamagui";
-import { defaultConfig } from "@tamagui/config/v4"; // for quick config install this
-import { router, Stack } from "expo-router";
-import { useEffect } from "react";
-import * as NavigationBar from "expo-navigation-bar";
+// app/_layout.tsx
+import { createTamagui, TamaguiProvider } from "tamagui";
+import { defaultConfig } from "@tamagui/config/v4";
+import { Stack } from "expo-router";
+
 const config = createTamagui(defaultConfig);
 import "@/global.css";
 import { StatusBar } from "expo-status-bar";
 import { StoryProvider } from "@/contexts/StoryContext";
 
-const RootLayout = () => {
-  useEffect(() => {
-    router.push("/story/summary");
-    NavigationBar.setBehaviorAsync("overlay-swipe"); // Use setBehaviorAsync
-    NavigationBar.setVisibilityAsync("hidden");
-  }, []);
-
+export default function RootLayout() {
   return (
-    <StoryProvider>
-      <TamaguiProvider config={config}>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="index" />
-          <Stack.Screen name="story" />
-        </Stack>
-        <StatusBar hidden />
-      </TamaguiProvider>
-    </StoryProvider>
+    <TamaguiProvider config={config}>
+      <Stack initialRouteName="index">
+        <Stack.Screen name="index" />
+        <Stack.Screen
+          name="story_parameters/options"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="story_parameters/gender"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="story/summary" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="story_parameters/readingSkills"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="story_parameters/loadingStory"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="story_parameters/storySpecialization"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="story/chapters/[id]"
+          options={{ headerShown: false }}
+        />
+      </Stack>
+    </TamaguiProvider>
   );
-};
-
-export default RootLayout;
+}

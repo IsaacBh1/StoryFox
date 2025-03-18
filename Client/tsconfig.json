@@ -3,9 +3,7 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     }
   },
   "include": [
@@ -13,6 +11,12 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "nativewind-env.d.ts"
+    "nativewind-env.d.ts",
+    "components/StepHeader.jsx",
+    "app/story/options.tsx",
+    "components/ProgressBar.jsx",
+    "components/GenderOption.jsx",
+    "components/InnerIcon.jsx",
+    "components/AppButton.jsx"
   ]
 }
