@@ -2,14 +2,14 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Stack } from "expo-router";
 
-const StoryListLayout = () => {
+const _layout = () => {
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="index" />
+      <Stack.Screen name="summary" />
     </Stack>
   );
 };
 
-export default StoryListLayout;
+export default _layout;
 
 const styles = StyleSheet.create({});

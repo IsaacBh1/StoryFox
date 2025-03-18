@@ -35,7 +35,14 @@ export default function CategroyOptionsScreen() {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <StepHeader currentStep={1} totalSteps={3} text={screenText} />
+      <StepHeader
+        currentStep={1}
+        totalSteps={3}
+        text={screenText}
+        OnBack={() => {
+          router.navigate("/");
+        }}
+      />
       <View style={styles.listWrapper}>
         <FlatList
           data={categories}
@@ -47,7 +54,7 @@ export default function CategroyOptionsScreen() {
                 stateProp={selectedId === item.id ? "selected" : "default"}
                 name={item.name}
                 icon={item.icon}
-                onPress={() => handleSelectCategroyOption(item.id , item.name)}
+                onPress={() => handleSelectCategroyOption(item.id, item.name)}
               >
                 <InnerIcon
                   size={48}

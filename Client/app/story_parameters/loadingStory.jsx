@@ -20,7 +20,7 @@ export default function LoadingScreen() {
     //logic for calling the api
     const loadStory = setTimeout(() => {
       setCurrentStory(story);
-      router.replace("/story/summary");
+      router.replace("/story/read/summary");
     }, 8500);
     const animation = Animated.timing(progressAnim, {
       toValue: 1,

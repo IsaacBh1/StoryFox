@@ -5,9 +5,10 @@ const config = getDefaultConfig(__dirname);
 const { withNativeWind } = require("nativewind/metro");
 const { withTamagui } = require("@tamagui/metro-plugin");
 
-// Apply NativeWind
+// Add SVG support by extending sourceExts
+config.resolver.sourceExts.push("svg");
 
-// Apply Tamagui
+// Apply NativeWind and Tamagui
 const nativeWindConfig = withNativeWind(config, { input: "./global.css" });
 const tamaguiConfig = withTamagui(nativeWindConfig, {
   components: ["tamagui"],
