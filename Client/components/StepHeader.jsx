@@ -43,7 +43,7 @@ const style = StyleSheet.create({
     fontFamily: "Inter-Bold",
     fontSize: 24,
     fontWeight: "00",
-    height: 60,
+    height: 70,
     letterSpacing: 0,
     lineHeight: 30,
     textAlign: "center",

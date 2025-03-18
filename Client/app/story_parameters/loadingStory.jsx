@@ -1,46 +1,55 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Animated, Image } from "react-native"; // Added Image import
+import { useStory } from "@/contexts/StoryContext";
+import { story } from "@/constants/test/mockStory";
+import { router } from "expo-router";
 
 const messages = [
   "Crafting an exciting adventure...",
   "Finding the perfect words...",
   "Illustrating the story for you...",
-  "Almost there! Just adding final touches..."
+  "Almost there! Just adding final touches...",
 ];
 
 export default function LoadingScreen() {
   const progressAnim = useRef(new Animated.Value(0)).current;
   const [currentStep, setCurrentStep] = useState(0);
   const fadeAnim = useRef(new Animated.Value(1)).current;
-
+  const { setCurrentStory } = useStory();
   useEffect(() => {
+    //logic for calling the api
+    const loadStory = setTimeout(() => {
+      setCurrentStory(story);
+      router.replace("/story/summary");
+    }, 8500);
     const animation = Animated.timing(progressAnim, {
       toValue: 1,
       duration: 8000,
-      useNativeDriver: false
+      useNativeDriver: false,
     });
 
     const interval = setInterval(() => {
-      setCurrentStep(prev => {
+      setCurrentStep((prev) => {
         const nextStep = prev < messages.length - 1 ? prev + 1 : prev;
         Animated.sequence([
           Animated.timing(fadeAnim, {
             toValue: 0,
             duration: 500,
-            useNativeDriver: true
+            useNativeDriver: true,
           }),
           Animated.timing(fadeAnim, {
             toValue: 1,
             duration: 500,
-            useNativeDriver: true
-          })
+            useNativeDriver: true,
+          }),
         ]).start();
         return nextStep;
       });
     }, 2000);
 
     animation.start();
-    return () => {  // Fixed cleanup function syntax
+    return () => {
+      // Fixed cleanup function syntax
       animation.stop();
       clearInterval(interval);
     };
@@ -48,30 +57,25 @@ export default function LoadingScreen() {
 
   const widthInterpolate = progressAnim.interpolate({
     inputRange: [0, 1],
-    outputRange: ['0%', '100%']
+    outputRange: ["0%", "100%"],
   });
 
   return (
     <View style={styles.container}>
       {/* Added static elements here */}
-      <Image 
-        source={require('../../assets/images/Stars.png')} 
+      <Image
+        source={require("../../assets/images/Stars.png")}
         style={{ width: 48, height: 48 }}
       />
-      <Text style={styles.generationText}>
-        Generating your story...
-      </Text>
+      <Text style={styles.generationText}>Generating your story...</Text>
 
       <Animated.Text style={[styles.text, { opacity: fadeAnim }]}>
         {messages[currentStep]}
       </Animated.Text>
-      
+
       <View style={styles.progressContainer}>
-        <Animated.View 
-          style={[
-            styles.progressBar,
-            { width: widthInterpolate }
-          ]}
+        <Animated.View
+          style={[styles.progressBar, { width: widthInterpolate }]}
         />
       </View>
     </View>
@@ -81,35 +85,36 @@ export default function LoadingScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
   },
   progressContainer: {
     width: 238,
     height: 11,
     borderRadius: 1000,
-    backgroundColor: '#FFF1E7',
-    overflow: 'hidden',
-    marginTop: 20
+    backgroundColor: "#FFF1E7",
+    overflow: "hidden",
+    marginTop: 20,
   },
   progressBar: {
-    height: '100%',
-    backgroundColor: '#F76808',
-    borderRadius: 1000
+    height: "100%",
+    backgroundColor: "#F76808",
+    borderRadius: 1000,
   },
   text: {
     fontSize: 18,
-    fontWeight: '500',
-    color: '#333',
-    textAlign: 'center',
-    marginBottom: 20
+    fontWeight: "500",
+    color: "#333",
+    textAlign: "center",
+    marginBottom: 20,
   },
-  generationText: { // Fixed typo in style name
-    fontFamily:'Inter-Bold',
+  generationText: {
+    // Fixed typo in style name
+    fontFamily: "Inter-Bold",
     fontSize: 20,
     fontWeight: "00",
 
-    marginBottom: 20
-  }
+    marginBottom: 20,
+  },
 });

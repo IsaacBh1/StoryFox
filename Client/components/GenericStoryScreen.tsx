@@ -47,10 +47,7 @@ const GenericStoryScreen = ({
           resizeMode="cover"
           style={{ height: "105%" }}
         >
-          <StoryHeader
-            title={showTitleInTopBar ? title : ""}
-            key={showTitleInTopBar ? `header-${title}` : ""}
-          />
+          <StoryHeader key={showTitleInTopBar ? `header-${title}` : ""} />
         </ImageBackground>
       </View>
       <View

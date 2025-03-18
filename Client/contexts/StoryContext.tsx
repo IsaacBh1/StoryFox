@@ -18,6 +18,7 @@ const StoryProvider = ({ children }: { children: ReactNode }) => {
   const [currentStory, setCurrentStory] = useState<Istory | undefined>(
     undefined
   );
+
   return (
     <Context.Provider value={{ currentStory, setCurrentStory }}>
       {children}

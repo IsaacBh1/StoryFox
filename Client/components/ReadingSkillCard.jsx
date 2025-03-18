@@ -74,7 +74,7 @@ function reducer(state, action) {
 const styles = StyleSheet.create({
   option: {
     width: 312,
-    height: 98,
+    height: 110,
     flexDirection: "row",
     gap: 16,
     alignItems: "center",

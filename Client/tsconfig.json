@@ -17,6 +17,7 @@
     "components/ProgressBar.jsx",
     "components/GenderOption.jsx",
     "components/InnerIcon.jsx",
-    "components/AppButton.jsx"
+    "components/AppButton.jsx",
+    "app/story_parameters/loadingStory.jsx"
   ]
 }

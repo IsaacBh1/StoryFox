@@ -12,23 +12,10 @@ export default function Index() {
     NavigationBar.setVisibilityAsync("hidden");
   });
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Button theme={"light_green"}>
-        <Link href={"/story/summary"} className="text-red-500">
-          Hello World
-        </Link>
-      </Button>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Link href="./story_parameters/options" asChild>
-          <Button theme="light_green">select gender</Button>
-        </Link>
-      </View>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Link href="./story_parameters/options" asChild>
+        <Button theme="light_green">select gender</Button>
+      </Link>
     </View>
   );
 }

@@ -1,4 +1,4 @@
-import { ArrowLeft, HeartOff } from "@tamagui/lucide-icons";
+import { ArrowLeft, Heart, HeartOff } from "@tamagui/lucide-icons";
 import { router } from "expo-router";
 import { StyleSheet, Text } from "react-native";
 import { Button, View } from "tamagui";
@@ -36,7 +36,7 @@ export default function StoryHeader({ title }: { title?: string }) {
       <Button
         size={"$5"}
         circular
-        icon={<HeartOff size={"$1.5"} />}
+        icon={<Heart size={"$1.5"} />}
         style={styles.button}
         color={"$color1"}
         background={"black"}
