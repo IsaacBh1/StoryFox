@@ -6,13 +6,11 @@ export default function StepHeader({
   currentStep,
   totalSteps,
   text = "hello",
+  OnBack,
 }) {
   return (
     <View style={style.container}>
-      <TouchableOpacity
-        style={style.fixedButton}
-        onPress={() => alert("Button pressed!")}
-      >
+      <TouchableOpacity style={style.fixedButton} onPress={OnBack}>
         <Ionicons name="arrow-back-outline" size={24} color="#1C274C" />
       </TouchableOpacity>
       <Text style={style.stepText}>
@@ -26,6 +24,7 @@ export default function StepHeader({
 
 const style = StyleSheet.create({
   container: {
+    position: "fixed",
     flex: 2,
     backgroundColor: "#FEFEFE",
     alignItems: "center",
@@ -56,8 +55,7 @@ const style = StyleSheet.create({
     left: 0,
     width: 48,
     height: 48,
-    color:"#fff" , 
+    color: "#fff",
     borderRadius: 24,
-
   },
 });

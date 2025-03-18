@@ -1,32 +1,38 @@
+// CategroyOptionsScreen.js
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import StepHeader from "../../components/StepHeader";
 import AppButton from "../../components/AppButton";
-import Option from "../../components/Option";
+import CategroyOption from "../../components/CategroyOption";
+import InnerIcon from "../../components/InnerIcon";
+import { useRouter } from "expo-router";
+
 const categories = [
-  { id: 1, name: "Chkopi", icon: "paw-outline" },
-  { id: 2, name: "Purr", icon: "heart-outline" },
-  { id: 3, name: "Meow", icon: "musical-notes-outline" },
-  { id: 4, name: "Paw", icon: "paw-outline" },
-  { id: 5, name: "Purr", icon: "heart-outline" },
-  { id: 6, name: "Meow", icon: "musical-notes-outline" },
-  { id: 7, name: "Meow", icon: "musical-notes-outline" },
-  { id: 8, name: "Meow", icon: "musical-notes-outline" },
-  { id: 9, name: "Meow", icon: "musical-notes-outline" },
+  { id: 1, name: "Nature", icon: "sunny-outline" },
+  { id: 2, name: "Science", icon: "planet-outline" },
+  { id: 3, name: "Fantasy", icon: "diamond-outline" },
+  { id: 4, name: "Adventure", icon: "map-outline" },
+  { id: 5, name: "Sport", icon: "bicycle-outline" },
+  { id: 6, name: "Culture", icon: "leaf-outline" },
+  { id: 7, name: "Family", icon: "home-outline" },
+  { id: 8, name: "Custom", icon: "add-circle-outline" },
 ];
 
-export default function OptionsScreen() {
-  // selectedId holds the currently selected option's id
+export default function CategroyOptionsScreen() {
+  const router = useRouter();
   const [selectedId, setSelectedId] = useState(null);
   const screenText = "What do you want your story to be about?";
 
-  // When an option is pressed, update selectedId without toggling off.
-  const handleSelectOption = (id) => {
-    setSelectedId(id);
+  // When an option is pressed, update the selectedId (only one can be selected)
+  const handleSelectCategroyOption = (id, name) => {
+    if (name === "Custom") {
+      router.navigate("./storySpecialization");
+    } else {
+      setSelectedId(id);
+    }
   };
-
   return (
     <SafeAreaView style={styles.container}>
       <StepHeader currentStep={1} totalSteps={3} text={screenText} />
@@ -36,13 +42,19 @@ export default function OptionsScreen() {
           numColumns={2}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
-            <View style={styles.optionWrapper}>
-              <Option
+            <View style={styles.CategroyOptionWrapper}>
+              <CategroyOption
                 stateProp={selectedId === item.id ? "selected" : "default"}
                 name={item.name}
                 icon={item.icon}
-                onPress={() => handleSelectOption(item.id)}
-              />
+                onPress={() => handleSelectCategroyOption(item.id , item.name)}
+              >
+                <InnerIcon
+                  size={48}
+                  color={selectedId === item.id ? "#171717" : "#6F6F6F"}
+                  icon={item.icon}
+                />
+              </CategroyOption>
             </View>
           )}
           contentContainerStyle={styles.listContent}
@@ -51,7 +63,7 @@ export default function OptionsScreen() {
         />
       </View>
       <View style={styles.buttonWrapper}>
-        <AppButton>
+        <AppButton onPress={() => router.push("./gender")}>
           <View style={styles.buttonContent}>
             <Text style={styles.buttonText}>Next</Text>
             <Ionicons name="arrow-forward-outline" size={18} color="#451E11" />
@@ -70,19 +82,16 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   columnWrapper: {
-    marginHorizontal: 0,
-    paddingHorizontal: 0,
     justifyContent: "flex-start",
   },
   buttonWrapper: {
     justifyContent: "center",
     alignItems: "center",
-    alignContent: "center",
   },
   listWrapper: {
     flex: 8,
   },
-  optionWrapper: {
+  CategroyOptionWrapper: {
     flex: 1,
     margin: 6,
     alignItems: "center",
@@ -93,7 +102,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
   },
-
   buttonText: {
     color: "#451E11",
     fontSize: 16,
