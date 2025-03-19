@@ -11,8 +11,8 @@ import {
 } from "@tamagui/lucide-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { useStory } from "@/contexts/StoryContext";
-import NotFoundScreen from "@/app/story/chapters/+not-found";
 import GenericStoryScreen from "@/components/GenericStoryScreen";
+import NotFoundScreen from "./+not-found";
 
 const Chapter = () => {
   const { currentStory } = useStory();
@@ -26,8 +26,8 @@ const Chapter = () => {
   const index = Number.parseInt(id);
   const handleNext = (id: number) => {
     id > -1
-      ? router.push(`/story/chapters/${id}`)
-      : router.push(`/story/StoryEnd`);
+      ? router.push(`/story/read/chapters/${id}`)
+      : router.push(`/story/read/StoryEnd`);
   };
   const handlePrevious = () => {
     router.back();

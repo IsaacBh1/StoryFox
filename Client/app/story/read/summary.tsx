@@ -15,7 +15,7 @@ interface Props {
 }
 const StorySummary = () => {
   function handlePress(event: GestureResponderEvent): void {
-    router.push("/story/chapters/0");
+    router.push("/story/read/chapters/0");
   }
   const { currentStory } = useStory();
   if (!currentStory) return <NotFoundScreen />;

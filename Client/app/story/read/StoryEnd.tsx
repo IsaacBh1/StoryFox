@@ -34,7 +34,7 @@ const StoryEnd = () => {
             icon={<Book />}
             title="Go To Library"
             onPress={() => {
-              router.navigate("/story/RateStory");
+              router.navigate("/story/read/RateStory");
             }}
           />
           <MainCustomButton
@@ -42,7 +42,7 @@ const StoryEnd = () => {
             icon={<Play />}
             title="Read Again"
             onPress={() => {
-              router.replace("/story/summary");
+              router.replace("/story/read/summary");
             }}
             borderColor="#FA934E"
           />
