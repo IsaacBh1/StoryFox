@@ -8,7 +8,7 @@ import AppButton from "../../components/AppButton";
 import CategroyOption from "../../components/CategroyOption";
 import InnerIcon from "../../components/InnerIcon";
 import { useRouter } from "expo-router";
-
+import { useStoryParameters } from "../../contexts/StoryParametersContext";
 const categories = [
   { id: 1, name: "Nature", icon: "sunny-outline" },
   { id: 2, name: "Science", icon: "planet-outline" },
@@ -21,6 +21,7 @@ const categories = [
 ];
 
 export default function CategroyOptionsScreen() {
+  const {updateSettings} = useStoryParameters() ; 
   const router = useRouter();
   const [selectedId, setSelectedId] = useState(null);
   const screenText = "What do you want your story to be about?";
@@ -31,6 +32,7 @@ export default function CategroyOptionsScreen() {
       router.navigate("./storySpecialization");
     } else {
       setSelectedId(id);
+      updateSettings({ category: name });
     }
   };
   return (

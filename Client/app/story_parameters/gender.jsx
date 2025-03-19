@@ -6,13 +6,17 @@ import StepHeader from "../../components/StepHeader";
 import AppButton from "../../components/AppButton";
 import GenderOption from "../../components/GenderOption";
 import { useRouter } from "expo-router";
+import { useStoryParameters } from "../../contexts/StoryParametersContext";
+
 export default function GenderScreen() {
+  const {updateSettings} = useStoryParameters() ;
   const router = useRouter();
   const [selectedGender, setSelectedGender] = useState("Boy");
   const screenText = "Who is this story for?";
 
   const handleSelectGender = (gender) => {
     setSelectedGender(gender);
+    updateSettings({ gender });
   };
 
   return (

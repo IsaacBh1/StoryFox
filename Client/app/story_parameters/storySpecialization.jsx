@@ -6,10 +6,21 @@ import StepHeader from "../../components/StepHeader";
 import AppButton from "../../components/AppButton";
 import { useRouter } from "expo-router";
 import { YStack, TextArea } from "tamagui";
+import { useStoryParameters } from "../../contexts/StoryParametersContext";
 
 export default function StorySpecialization() {
+  const { updateSettings } = useStoryParameters();
+  const [customPrompt, setCustomPrompt] = useState("");
   const router = useRouter();
   const screenText = "What do you want your story to be about?";
+
+  const handleNext = () => {
+    updateSettings({
+      category: "Custom",
+      customPrompt,
+    });
+    router.push("./gender");
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -28,10 +39,12 @@ export default function StorySpecialization() {
             <TextArea
               placeholder="Describe briefly the idea of the story..."
               style={styles.textArea}
+              value={customPrompt}
+              onChangeText={setCustomPrompt}
             />
           </YStack>
           <View style={styles.buttonWrapper}>
-            <AppButton onPress={() => router.push('./gender')}>
+            <AppButton onPress={handleNext}>
               <View style={styles.buttonContent}>
                 <Text style={styles.buttonText}>Next</Text>
                 <Ionicons

@@ -6,11 +6,19 @@ import StepHeader from "../../components/StepHeader";
 import AppButton from "../../components/AppButton";
 import ReadingSkillCard from "../../components/ReadingSkillCard";
 import { useRouter } from "expo-router";
+import { useStoryParameters } from "../../contexts/StoryParametersContext";
 
 export default function ReadingSkillsSecreen() {
+  const { updateSettings } = useStoryParameters();
+
   const router = useRouter();
-  const [selectedSkill, setSelectedSkill] = useState(null);
+  const [selectedSkill, setSelectedSkill] = useState("Listening only");
   const screenText = "What is your child’s reading level?";
+
+  const handleSelectSkill = (skill) => {
+    setSelectedSkill(skill);
+    updateSettings({ readingSkill: skill });
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -40,21 +48,21 @@ export default function ReadingSkillsSecreen() {
             description="Simple words, more images, narration focus"
             icon="headset-outline"
             isSelected={selectedSkill === "Listening only"}
-            onSelect={() => setSelectedSkill("Listening only")}
+            onSelect={() => handleSelectSkill("Listening only")}
           />
           <ReadingSkillCard
             name="Early Reader"
             description="Short sentences, common sight words"
             icon="book-outline"
             isSelected={selectedSkill === "Early Reader"}
-            onSelect={() => setSelectedSkill("Early Reader")}
+            onSelect={() => handleSelectSkill("Early Reader")}
           />
           <ReadingSkillCard
             name="Confident Reader"
             description="Longer sentences, richer vocabulary"
             icon="library-outline"
             isSelected={selectedSkill === "Confident Reader"}
-            onSelect={() => setSelectedSkill("Confident Reader")}
+            onSelect={() => handleSelectSkill("Confident Reader")}
           />
         </View>
       </View>

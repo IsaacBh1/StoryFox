@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Animated, Image } from "react-native"; // Added
 import { useStory } from "@/contexts/StoryContext";
 import { story } from "@/constants/test/mockStory";
 import { router } from "expo-router";
+import { useStoryParameters } from "../../contexts/StoryParametersContext";
 
 const messages = [
   "Crafting an exciting adventure...",
@@ -12,12 +13,26 @@ const messages = [
 ];
 
 export default function LoadingScreen() {
+  const { storyParametersSettings } = useStoryParameters();
   const progressAnim = useRef(new Animated.Value(0)).current;
   const [currentStep, setCurrentStep] = useState(0);
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const { setCurrentStory } = useStory();
   useEffect(() => {
-    //logic for calling the api
+    const generateStory = async () => {
+      const storyData = {
+        gender: storyParametersSettings.gender,
+        readingLevel: storyParametersSettings.readingSkill,
+        category: storyParametersSettings.category,
+        customPrompt: storyParametersSettings.customPrompt,
+      };
+      console.log(storyData) ; 
+  
+      //logic for calling the api
+      // const result = await fetchYourAPI(storyData);
+      //setCurrentStory(result);
+    };
+    generateStory();
     const loadStory = setTimeout(() => {
       setCurrentStory(story);
       router.replace("/story/read/summary");
