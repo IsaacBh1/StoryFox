@@ -3,9 +3,8 @@ import { View, Text, Image, StyleSheet, Animated, Easing } from "react-native";
 import { router, useRouter } from "expo-router";
 import { logoWithText, sadFox, welcomeLogo } from "@/constants/icons";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ArrowRight, SlidersVertical, Sparkles } from "@tamagui/lucide-icons";
+import {SlidersVertical, Sparkles } from "@tamagui/lucide-icons";
 import AppButton from "@/components/AppButton";
-import { useEffect, useRef } from "react";
 import { Button } from "tamagui";
 
 export default function WelcomeScreen() {
@@ -88,13 +87,15 @@ const styles = StyleSheet.create({
   foxImage: {
     width: 200,
     marginBottom: 18,
+    height:200,
   },
   title: {
-    fontWeight: 700,
-    fontSize: 24,
     color: "#171717",
     textAlign: "center",
     marginBottom: 8,
+    marginRight: 10,
+    fontFamily: "Inter",
+    fontWeight: 700,
   },
   subtitle: {
     fontSize: 16,

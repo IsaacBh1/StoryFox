@@ -11,4 +11,3 @@ const SettingsIndex = () => {
 
 export default SettingsIndex;
 
-const styles = StyleSheet.create({});

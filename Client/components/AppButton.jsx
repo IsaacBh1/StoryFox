@@ -15,6 +15,7 @@ export default function AppButton({ children, onPress, style }) {
 
 const styles = StyleSheet.create({
   button: {
+    zIndex:10 ,
     width: 276,
     height: 44,
     borderRadius: 999,

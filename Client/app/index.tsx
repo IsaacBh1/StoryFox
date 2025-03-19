@@ -37,9 +37,8 @@ export default function WelcomeScreen() {
     };
   }, []);
   return (
-    <SafeAreaView style={{ height: "100%" }}>
+    <SafeAreaView style={{ height: "100%", backgroundColor: "#FCFCFC" }}>
       <View style={styles.container}>
-        {/* Header */}
         <View>
           <Image
             source={logoWithText} // Replace with your fox image asset
@@ -55,9 +54,33 @@ export default function WelcomeScreen() {
             Create fun and educational stories{"\n"} with a tap!
           </Text>
         </View>
+        <View>
+          <AppButton
+            onPress={() => {
+              router.push("/story");
+            }}
+            style={styles.button}
+          >
+            <Text
+              style={{
+                color: "#451E11",
+                marginRight: 10,
+                fontFamily: "Inter",
+                fontWeight: 700,
+                fontSize: 14,
+              }}
+            >
+              Get Started
+            </Text>
+            <ArrowRight />
+          </AppButton>
+        </View>
         <Animated.View
           style={{
             transform: [{ translateY: bounceAnim }],
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           <Image
@@ -66,20 +89,6 @@ export default function WelcomeScreen() {
             resizeMode="contain"
           />
         </Animated.View>
-        <View>
-          <AppButton
-            onPress={() => {
-              router.replace("/story");
-            }}
-            style={styles.button}
-          >
-            <Text style={{ color: "#451E11", marginRight: 10 }}>
-              {" "}
-              Get Started
-            </Text>
-            <ArrowRight />
-          </AppButton>
-        </View>
       </View>
     </SafeAreaView>
   );
@@ -93,7 +102,7 @@ const styles = StyleSheet.create({
   container: {
     height: "100%",
     margin: 10,
-    backgroundColor: "#F5F5F5",
+    backgroundColor: "#FCFCFC",
     alignItems: "center",
     paddingTop: 30,
   },
@@ -105,7 +114,7 @@ const styles = StyleSheet.create({
   appName: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#FF6200", // Orange color
+    color: "#FF6200",
   },
   content: {
     // flex: 1,
@@ -115,13 +124,12 @@ const styles = StyleSheet.create({
   },
   foxImage: {
     width: 250,
-
-    marginBottom: 20,
+    //marginBottom: 20,
   },
   title: {
-    fontWeight: 700,
+    fontFamily: "Inter-Bold",
     lineHeight: 45,
-    fontSize: 32,
+    fontSize: 28,
     color: "#171717",
     textAlign: "center",
     marginBottom: 10,
@@ -136,12 +144,11 @@ const styles = StyleSheet.create({
   },
   button: {
     flexDirection: "row",
-    marginTop: 50,
-    width: 250,
-    borderRadius: 25,
+    marginTop: -10,
+    width: 156,
     alignItems: "center",
 
-    marginBottom: 30,
+    //marginBottom: 30,
   },
   buttonText: {
     color: "#FFF",
