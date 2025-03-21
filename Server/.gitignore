@@ -21,7 +21,7 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 **/.xcode.env.local
-test*
+
 # Gradle
 /build/
 /packages/rn-tester/build
@@ -177,7 +177,7 @@ venv/
 # Environment variable files
 .env
 *.env
-
+*.png
 # Distribution / packaging
 build/
 dist/
