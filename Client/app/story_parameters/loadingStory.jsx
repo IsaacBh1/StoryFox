@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, Animated, Image } from "react-native"; // Added Image import
+import { View, Text, StyleSheet, Animated, Image } from "react-native";
 import { useStory } from "@/contexts/StoryContext";
-import { story } from "@/constants/test/mockStory";
 import { router } from "expo-router";
 import { useStoryParameters } from "../../contexts/StoryParametersContext";
+import { loadStoryAsync } from "@/api/agent";
 
 const messages = [
   "Crafting an exciting adventure...",
@@ -18,25 +18,40 @@ export default function LoadingScreen() {
   const [currentStep, setCurrentStep] = useState(0);
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const { setCurrentStory } = useStory();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
   useEffect(() => {
     const generateStory = async () => {
+      if (!storyParametersSettings) {
+        console.error("Story parameters are missing!");
+        return;
+      }
+
       const storyData = {
-        gender: storyParametersSettings.gender,
-        readingLevel: storyParametersSettings.readingSkill,
-        category: storyParametersSettings.category,
-        customPrompt: storyParametersSettings.customPrompt,
+        gender: storyParametersSettings.gender || "default",
+        readingLevel: storyParametersSettings.readingSkill || "default",
+        category: storyParametersSettings.category || "default",
+        customPrompt: storyParametersSettings.customPrompt || "",
       };
-      console.log(storyData) ; 
-  
-      //logic for calling the api
-      // const result = await fetchYourAPI(storyData);
-      //setCurrentStory(result);
+
+      setLoading(true);
+      setError("");
+
+      try {
+        const story = await loadStoryAsync(storyData);
+        setCurrentStory(story);
+        setLoading(false);
+        router.replace("/story/read/summary");
+      } catch (error) {
+        console.error("Error generating story:", error);
+        setError("Failed to generate story. Please try again.");
+        setLoading(false);
+      }
     };
+
     generateStory();
-    const loadStory = setTimeout(() => {
-      setCurrentStory(story);
-      router.replace("/story/read/summary");
-    }, 8500);
+
     const animation = Animated.timing(progressAnim, {
       toValue: 1,
       duration: 8000,
@@ -64,11 +79,10 @@ export default function LoadingScreen() {
 
     animation.start();
     return () => {
-      // Fixed cleanup function syntax
       animation.stop();
       clearInterval(interval);
     };
-  }, []);
+  }, [progressAnim, fadeAnim, setCurrentStory, storyParametersSettings]);
 
   const widthInterpolate = progressAnim.interpolate({
     inputRange: [0, 1],
@@ -77,16 +91,19 @@ export default function LoadingScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Added static elements here */}
       <Image
         source={require("../../assets/images/Stars.png")}
         style={{ width: 48, height: 48 }}
       />
       <Text style={styles.generationText}>Generating your story...</Text>
 
-      <Animated.Text style={[styles.text, { opacity: fadeAnim }]}>
-        {messages[currentStep]}
-      </Animated.Text>
+      {error ? (
+        <Text style={styles.errorText}>{error}</Text>
+      ) : (
+        <Animated.Text style={[styles.text, { opacity: fadeAnim }]}>
+          {messages[currentStep]}
+        </Animated.Text>
+      )}
 
       <View style={styles.progressContainer}>
         <Animated.View
@@ -125,11 +142,15 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   generationText: {
-    // Fixed typo in style name
     fontFamily: "Inter-Bold",
     fontSize: 20,
-    fontWeight: "00",
-
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  errorText: {
+    fontSize: 16,
+    color: "red",
+    textAlign: "center",
     marginBottom: 20,
   },
 });
