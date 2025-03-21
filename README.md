@@ -6,9 +6,9 @@ StoryFox is a React Native application that leverages AI to generate unique stor
 
 ## Features ✨
 
-- **AI-Powered Story Generation**: Create engaging stories in seconds using OpenAI's GPT models.
-- **Dynamic Image Creation**: Generate story-specific images using AI (e.g., DALL-E, Stability AI).
-- **Save & Organize**: Save your favorite stories and images locally.
+- **AI-Powered Story Generation**: Create engaging stories in seconds using AI's  models.
+- **Dynamic Image Creation**: Generate story-specific images using AI .
+- **Save & Organize**: Save your favorite stories locally.
 - **Share Stories**: Export stories as text or images to share with friends.
 - **Customizable Themes**: Adjust story length, genre, and character preferences.
 - **Offline Mode**: Read previously generated stories without internet access.
